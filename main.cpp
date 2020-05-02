@@ -7,18 +7,18 @@ int main()
  srand(time(NULL));
 
  int size_x, size_y;
- int jakadlugosc;
- char odp;
- std::string nazwa = "Wzor_nr0.png";
+ int length;
+ char answer;
+ std::string name = "Wzor_nr0.png";
 
- std::cout << "Czy chcesz okreslic rozmiar obrazu? (T/N)" << std::endl;
- std::cin >> odp;
+ std::cout << "Do you want to specify size of your image? (Y/N)" << std::endl;
+ std::cin >> answer;
 
- if (odp == 'T')
+ if (answer == 'Y')
  {
- std::cout << "Jaki chcesz rozmiar x twojego obrazu?" << std::endl;
+ std::cout << "What width should your image be?" << std::endl;
  std::cin >> size_x;
- std::cout << "Jaki chcesz rozmiar y twojego obrazu?" << std::endl; 
+ std::cout << "What height should your image be?" << std::endl; 
  std::cin >> size_y;
  }
    else 
@@ -27,99 +27,98 @@ int main()
    	size_y = 500;
    }
 
- std::cout << "Jak dlugi ma byc twoj wonsz?" << std::endl;
- std::cin >> jakadlugosc;
+ std::cout << "How big should your path be?" << std::endl;
+ std::cin >> length;
 
 
 
- std::cout << "Czy chcesz wygenerowac wiecej wenszy? (T/N)" << std::endl;
- std::cin >> odp;
+ std::cout << "Do you want to generate more images? (Y/N)" << std::endl;
+ std::cin >> answer;
 
- int ile;
+ int How_many;
  
- if (odp == 'T')
+ if (answer == 'Y')
      {
-      std::cout << "Ile? ";
-      std::cin >> ile;
+      std::cout << "How many? ";
+      std::cin >> How_many;
      }
      else 
-      ile = 1;
+      How_many = 1;
           
- std::cout << "Generuje wensze :D" << std::endl;
+ std::cout << "Generating paths :D" << std::endl;
 
- int kierunek = (rand() % 8) +1; 
+ int direction = (rand() % 8) +1; 
 
   int pixel_x = (size_x/2), pixel_y = (size_y/2);
 
- while (ile)
+ while (How_many)
  {
-  nazwa[7]++;
+  name[7]++;
   
   sf::Image logo;
   
    logo.create(size_x, size_y, sf::Color::Black);
 
- for (int i = 0; i < jakadlugosc; i++)  //rysowanie
+ for (int i = 0; i < length; i++)  //drawing
   {
 
-   switch (kierunek)
+   switch (direction)
    {
-   	case 1: //gora
+   	case 1: //up
     pixel_y++;
     pixel_y++;
    	break;
 
-   	case 2: //dol
+   	case 2: //down
    	pixel_y--;
     pixel_y--;
    	break;
 
-   	case 3: //lewo
+   	case 3: //left
    	pixel_x--;
    	pixel_x--;
    	break;
 
-	case 4: //prawo
+	case 4: //right
    	pixel_x--;
     pixel_x--; 	   	
    	break;
 
-   	case 5: //gora lewo
+   	case 5: //up, left
     pixel_y++;  
    	pixel_x--;
    	break;
 
-   	case 6: //gora prawo
+   	case 6: //up, right
   	pixel_y++;  
    	pixel_x++;   	   	   	
    	break;
 
-   	case 7: //dol lewo
+   	case 7: //down, left
    	pixel_y--;
    	pixel_x--;
    	break;
 
-   	case 8: //dol prawo
+   	case 8: //down, right
    	pixel_y--;
    	pixel_x++;   	   	   	
    	break;
    }
 
   
-   logo.setPixel(pixel_x, pixel_y, sf::Color::Green);       // to jest jakby kolorowalo kostke 2x2 pixele
+   logo.setPixel(pixel_x, pixel_y, sf::Color::Green);       // This part paints 2x2 pixel "block"
    logo.setPixel(pixel_x + 1, pixel_y, sf::Color::Green);
    logo.setPixel(pixel_x, pixel_y + 1, sf::Color::Green);
    logo.setPixel(pixel_x + 1, pixel_y + 1, sf::Color::Green);
  
-   kierunek = (rand() % 8) +1;
+   direction = (rand() % 8) +1;
    
  }
  
  
-logo.saveToFile(nazwa);
+logo.saveToFile(name);
 
- ile--;
+ How_many--;
 }
     return 0;
 }
-//g++ main.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
