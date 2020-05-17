@@ -4,7 +4,6 @@
 
 int main()
 {
-    int length;
     int size_x, size_y;
     char answer;
     std::string name = "Wzor_nr0.png";
@@ -38,7 +37,6 @@ int main()
     else
         How_many = 1;
 
-    length %= size_x;
 
     while (How_many)
     {
@@ -46,7 +44,7 @@ int main()
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
 
-        drawing_path(size_x, size_y, length, name);
+        drawing_path(size_x, size_y, name);
         name[7]++;
         How_many--;
     }

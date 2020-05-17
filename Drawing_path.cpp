@@ -5,15 +5,17 @@
 #include <iostream>
 
 
-void drawing_path(int size_x, int size_y, int length, std::string name)
+void drawing_path(int size_x, int size_y, std::string name)
 {
     srand(time(NULL));
     sf::Image logo;
     logo.loadFromFile(name);
 
+    int length = rand()%size_x;
     int more_random = (rand() % 8) + 1;
     int direction = (((rand() % 8) + 1) + more_random)/2;
     int pixel_x = (size_x / 2), pixel_y = (size_y / 2);
+
 
     for (int i = 0; i < length; i++) // drawing
     {
