@@ -38,13 +38,16 @@ int main()
     else
         How_many = 1;
 
-    std::cout << "How big should your path be?" << std::endl;
-    std::cin >> length;
+    length %= size_x;
 
     while (How_many)
     {
-        name[7]++;
+        sf::Image logo;
+        logo.create(size_x, size_y, sf::Color::Black);
+        logo.saveToFile(name);
+
         drawing_path(size_x, size_y, length, name);
+        name[7]++;
         How_many--;
     }
     return 0;

@@ -8,11 +8,11 @@
 void drawing_path(int size_x, int size_y, int length, std::string name)
 {
     srand(time(NULL));
-
     sf::Image logo;
-    logo.create(size_x, size_y, sf::Color::Black);
+    logo.loadFromFile(name);
 
-    int direction = (rand() % 8) + 1;
+    int more_random = (rand() % 8) + 1;
+    int direction = (((rand() % 8) + 1) + more_random)/2;
     int pixel_x = (size_x / 2), pixel_y = (size_y / 2);
 
     for (int i = 0; i < length; i++) // drawing
