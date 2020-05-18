@@ -4,6 +4,8 @@
 
 int main()
 {
+   srand(time(NULL));
+
     int size_x, size_y;
     char answer;
     std::string name = "Wzor_nr0.png";
@@ -23,7 +25,7 @@ int main()
         size_x = 500;
         size_y = 500;
     }
-
+     //zaświadczenie zdjęcie wyeksportuj
     std::cout << "Do you want to generate more images? (Y/N)" << std::endl;
     std::cin >> answer;
 
