@@ -25,7 +25,6 @@ int main()
         size_x = 500;
         size_y = 500;
     }
-     //zaświadczenie zdjęcie wyeksportuj
     std::cout << "Do you want to generate more images? (Y/N)" << std::endl;
     std::cin >> answer;
 
@@ -39,10 +38,10 @@ int main()
     else
         How_many = 1;
 
+        sf::Image logo;
 
     while (How_many)
     {
-        sf::Image logo;
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
 

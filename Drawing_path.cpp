@@ -7,7 +7,6 @@
 
 void drawing_path(int size_x, int size_y, std::string name)
 {
-    srand(time(NULL));
     sf::Image logo;
     logo.loadFromFile(name);
 
