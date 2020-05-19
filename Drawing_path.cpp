@@ -10,7 +10,14 @@ void drawing_path(int size_x, int size_y, std::string name)
     sf::Image logo;
     logo.loadFromFile(name);
 
-    int x = rand()%10; //i have no idea how to call this 'radius'?
+     sf::Color color;
+
+     color.r = rand() % 255;
+     color.g = rand() % 255;
+     color.b = rand() % 255;
+
+    int x = rand()%10;      //i have no idea how to call this 'radius'?
+
     int length = rand()%(size_x*5);
     int more_random = (rand() % 8) + 1;
     int direction = (((rand() % 8) + 1) + more_random)/2;
@@ -41,11 +48,11 @@ void drawing_path(int size_x, int size_y, std::string name)
 
      for (int i = 0; i < x; i++)
         for (int j = 0; j < x; j++)
-            logo.setPixel(pixel_x + i, pixel_y + j, sf::Color::Green); // This part paints 2x2 pixel "block"
+            logo.setPixel(pixel_x + i, pixel_y + j, color); // This part paints 2x2 pixel "block"
 
 
         direction = (rand() % 8) + 1;
     }
-    std::cout << "Generating path :D" << std::endl;
+    std::cout << "Generating " << name << std::endl;
     logo.saveToFile(name);
 }

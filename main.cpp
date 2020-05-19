@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "functions.h"
 
 int main()
@@ -8,7 +10,7 @@ int main()
 
     int size_x, size_y;
     char answer;
-    std::string name = "Wzor_nr0.png";
+    std::string name = "Path_00.png";
 
     std::cout << "Do you want to specify size of your image? (Y/N)" << std::endl;
     std::cin >> answer;
@@ -22,8 +24,8 @@ int main()
     }
     else
     {
-        size_x = 500;
-        size_y = 500;
+        size_x = 1024;
+        size_y = 1024;
     }
     std::cout << "Do you want to generate more images? (Y/N)" << std::endl;
     std::cin >> answer;
@@ -46,7 +48,15 @@ int main()
         logo.saveToFile(name);
 
         drawing_path(size_x, size_y, name);
-        name[7]++;
+
+        if (name[6] == '9')
+            {
+              name[5]++;
+              name[6] = '0';
+            }
+        else
+           name[6]++;
+
         How_many--;
     }
     return 0;
