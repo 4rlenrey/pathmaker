@@ -6,7 +6,7 @@
 
 int main()
 {
-   srand(time(NULL));
+    srand(time(NULL));
 
     int size_x, size_y;
     char answer;
@@ -40,7 +40,7 @@ int main()
     else
         How_many = 1;
 
-        sf::Image logo;
+    sf::Image logo;
 
     while (How_many)
     {
@@ -50,12 +50,12 @@ int main()
         drawing_path(size_x, size_y, name);
 
         if (name[6] == '9')
-            {
-              name[5]++;
-              name[6] = '0';
-            }
+        {
+            name[5]++;
+            name[6] = '0';
+        }
         else
-           name[6]++;
+            name[6]++;
 
         How_many--;
     }

@@ -10,17 +10,17 @@ void drawing_path(int size_x, int size_y, std::string name)
     sf::Image logo;
     logo.loadFromFile(name);
 
-     sf::Color color;
+    sf::Color color;
 
-     color.r = rand() % 255;
-     color.g = rand() % 255;
-     color.b = rand() % 255;
+    color.r = rand() % 255;
+    color.g = rand() % 255;
+    color.b = rand() % 255;
 
-    int x = rand()%10;      //i have no idea how to call this 'radius'?
+    int x = rand() % 10; // i have no idea how to call this 'radius'?
 
-    int length = rand()%(size_x*5);
+    int length = rand() % (size_x * 5);
     int more_random = (rand() % 8) + 1;
-    int direction = (((rand() % 8) + 1) + more_random)/2;
+    int direction = (((rand() % 8) + 1) + more_random) / 2;
     int pixel_x = (size_x / 2), pixel_y = (size_y / 2);
 
     for (int i = 0; i < length; i++) // drawing
@@ -43,12 +43,11 @@ void drawing_path(int size_x, int size_y, std::string name)
             case 4: // right
                 pixel_x += x;
                 break;
-
         }
 
-     for (int i = 0; i < x; i++)
-        for (int j = 0; j < x; j++)
-            logo.setPixel(pixel_x + i, pixel_y + j, color); // This part paints 2x2 pixel "block"
+        for (int i = 0; i < x; i++) //this paint x*x block
+            for (int j = 0; j < x; j++)
+                logo.setPixel(pixel_x + i, pixel_y + j, color);
 
 
         direction = (rand() % 8) + 1;
