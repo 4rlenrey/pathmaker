@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "functions.h"
+#include "path/path.h"
 
 int main()
 {
@@ -46,8 +46,11 @@ int main()
     {
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
+        
+        Path path_1;
+        path_1.set_variables(name);
+        path_1.drawing_path();
 
-        drawing_path(size_x, size_y, name);
 
         if (name[6] == '9')
         {
