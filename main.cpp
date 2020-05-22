@@ -10,7 +10,7 @@ int main()
 
     int size_x, size_y;
     char answer;
-    std::string name = "Path_00.png";
+    std::string name = "generated/Path_00.png";
 
     std::cout << "Do you want to specify size of your image? (Y/N)" << std::endl;
     std::cin >> answer;
@@ -46,19 +46,19 @@ int main()
     {
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
-        
+
         Path path_1;
         path_1.set_variables(name);
         path_1.drawing_path();
 
 
-        if (name[6] == '9')
+        if (name[16] == '9')
         {
-            name[5]++;
-            name[6] = '0';
+            name[15]++;
+            name[16] = '0';
         }
         else
-            name[6]++;
+            name[16]++;
 
         How_many--;
     }
