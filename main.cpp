@@ -10,7 +10,7 @@ int main()
 
     int size_x, size_y;
     char answer;
-    std::string name = "generated/Path_00.png";
+    std::string name = "Generated/Path_00.png";
 
     std::cout << "Do you want to specify size of your image? (Y/N)" << std::endl;
     std::cin >> answer;
