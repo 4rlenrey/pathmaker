@@ -1,5 +1,7 @@
 # paths
-This is a simple SFML program that can create pixel paths.
+This is a simple SFML program that can create randomised pixel paths.
+
+
 
 **Examples:**
 ![Example](Paths/Path_00.png)
