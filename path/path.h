@@ -3,20 +3,24 @@
 
 class Path
 {
- private:
+private:
+    std::string name;
+    sf::Image logo;
+    sf::Color color;
 
-   std::string name;
-   sf::Image logo;
-   sf::Color color;
+    int length;
+    int pixel_x, pixel_y;
+    int size_x, size_y;
+    int direction;
+    int x; // something like radius
 
-   int length;
-   int pixel_x, pixel_y;
-   int size_x, size_y;
-   int direction;
-   int x;
+public:
+    Path(std::string n) // constructor
+    {
+        set_variables(n);
+    }
 
-  public:
     void set_variables(std::string n);
-    void drawing_path();
 
+    void drawing_path();
 };

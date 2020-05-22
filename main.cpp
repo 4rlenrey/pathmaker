@@ -47,8 +47,7 @@ int main()
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
 
-        Path path_1;
-        path_1.set_variables(name);
+        Path path_1(name);
         path_1.drawing_path();
 
 
