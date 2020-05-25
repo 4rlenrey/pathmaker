@@ -16,6 +16,6 @@ clean:
 	$(CC) -c $(INCLUDES) $(FLAGS) $<
 
 main: $(OBJ)
-	$(CC) $(OBJ) $(LIBS) -o program
+	$(CC)  $(OBJ) $(LIBS) -o program
 
 #g++ main.cpp path/path.cpp -o program -lsfml-graphics -lsfml-window -lsfml-system
