@@ -2,3 +2,5 @@
 /Unification/run
 *.o
 /Path_maker/Generated
+/Unification/input/*.png
+/Unification/output/*.png
