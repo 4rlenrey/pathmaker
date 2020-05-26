@@ -1,6 +1,11 @@
 /Path_maker/program
-/Unification/run
+#run
+/Equalization/run
+
 *.o
+
 /Path_maker/Generated
-/Unification/input/*.png
-/Unification/output/*.png
+#ignore input
+/Equalization/Input/*.png
+#ignore output
+/Equalization/output/*.png
