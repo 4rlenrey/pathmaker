@@ -66,6 +66,16 @@ for(int j = 0; j < size_y; j = j + compare)
          if(g2 <= 0)
             g2 = 0;
 
+            if(b2 < b || b2 == b)
+             b2 += change;
+            if(b2 > b)
+             b2 += change;
+
+            if(b2 >= 255)
+               b2 = 255;
+            if(b2 <= 0)
+               b2 = 0;
+
 
       changed_color.r = r2;
       changed_color.g = g2;
