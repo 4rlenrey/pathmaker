@@ -38,20 +38,18 @@ for(int j = 1; j < size_y; j++)
     r2 = 0; g2 = 0; b2 = 0;
 
 
-    for(int z = 1; z < compare; z++)
+    for(int z = i; z < compare; z++)
     {
     r = r + image.getPixel(z, j).r;
     g = g + image.getPixel(z, j).g;
     b = b + image.getPixel(z, j).b;
     }
-    cout << r<<" " << g <<" " << b << endl;
 
     r /= compare;
     g /= compare;
     b /= compare;
-    cout << r<<" " << g <<" " << b << endl;
 
-    for(int z = 0; z < compare; z++)
+    for(int z = i; z < compare; z++)
     {
 
       r2 = r + image.getPixel(z, j).r;
@@ -93,8 +91,13 @@ for(int j = 1; j < size_y; j++)
       changed_color.g = g2;
       changed_color.b = b2;
 
+      cout << r2<<" " << g2 <<" " << b2 << endl;
 
-      image.setPixel(z, j, changed_color);
+      image.setPixel(i, j, changed_color);
+
+      r = 0; g = 0; b = 0;
+      r2 = 0; g2 = 0; b2 = 0;
+
 
     }
 
