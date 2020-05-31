@@ -1,11 +1,15 @@
 /Path_maker/program
 #run
 /Equalization/run
+#run
 
 *.o
 
 /Path_maker/Generated
 #ignore input
+
 /Equalization/Input/*.png
+
 #ignore output
+
 /Equalization/output/*.png
