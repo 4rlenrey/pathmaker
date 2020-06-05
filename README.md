@@ -1,4 +1,8 @@
 # paths
+This repository contain my programs 
+I used SFML to create them
+
+
 Path_maker is a simple SFML program that can create randomised pixel paths.
 
 **Examples:**
