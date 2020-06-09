@@ -1,5 +1,3 @@
-//In progress!
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -38,7 +36,7 @@ for(int j = 1; j < size_y; j++)
     r2 = 0; g2 = 0; b2 = 0;
 
 
-    for(int z = i; z < compare; z++)
+    for(int z = i; z < i + compare; z++)
     {
     r = r + image.getPixel(z, j).r;
     g = g + image.getPixel(z, j).g;
@@ -49,7 +47,7 @@ for(int j = 1; j < size_y; j++)
     g /= compare;
     b /= compare;
 
-    for(int z = i; z < compare; z++)
+    for(int z = i; z <  i +compare; z++)
     {
 
       r2 = r + image.getPixel(z, j).r;
@@ -98,11 +96,12 @@ for(int j = 1; j < size_y; j++)
       r = 0; g = 0; b = 0;
       r2 = 0; g2 = 0; b2 = 0;
 
-
-    }
-
-
   }
+
+
+}
+
+
 }
 
 image.saveToFile("output/image.png");

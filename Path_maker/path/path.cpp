@@ -48,19 +48,19 @@ void Path::drawing_path()
         {
             case 1: // up
                 pixel_y += x;
-                return;
+                break;
 
             case 2: // down
                 pixel_y -= x;
-                return;
+                break;
 
             case 3: // left
                 pixel_x -= x;
-                return;
+                break;
 
             case 4: // right
                 pixel_x += x;
-                return;
+                break;
         }
 
         for (int i = 0; i < x; i++) // this paint x*x block
