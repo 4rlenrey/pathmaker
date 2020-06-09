@@ -9,7 +9,9 @@
 #ignore input
 
 /Equalization/Input/*.png
+/Equalization/Input/*.jpg
 
 #ignore output
 
 /Equalization/output/*.png
+/Equalization/output/*.jpg

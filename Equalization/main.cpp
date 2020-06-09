@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
   cout << "Insert how much you want to change these pixels\n";
   cin >> change;
 
-  image.loadFromFile("Input/image.png");
+  image.loadFromFile("Input/image.jpg");
 
   int size_x = image.getSize().x;
   int size_y = image.getSize().y;
@@ -89,7 +89,6 @@ for(int j = 1; j < size_y; j++)
       changed_color.g = g2;
       changed_color.b = b2;
 
-      cout << r2<<" " << g2 <<" " << b2 << endl;
 
       image.setPixel(i, j, changed_color);
 
