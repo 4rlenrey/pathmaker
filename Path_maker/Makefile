@@ -4,13 +4,14 @@ FLAGS = -Wall
 
 OBJ =\
 	main.o\
-	path/path.o
+	path/path.o\
+	functions/functions.o
 
 all: main
 
 clean:
 	@echo Deleting files
-	@rm -f *.o path/*.o
+	@rm -f *.o path/*.o Functions/*.o
 
 .c.o:
 	$(CC) -c $(INCLUDES) $(FLAGS) $<
