@@ -1,37 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "graphical.h"
 
-void graphical()
+void Graphically::set_variables()
 {
-    sf::RenderWindow window(sf::VideoMode(900, 800), "Path_Maker", sf::Style::Default);
+    window.create(sf::VideoMode(800, 600), "My window");
+    window.isOpen();
+}
 
-    window.setActive(true);
-    bool running = true;
+void Graphically::update(std::string n)
+{
+  sf::Texture texture;
+   if (!(texture.loadFromFile(n)))
+           std::cout << "Cannot load image";
 
-     sf::Image image;
-     if (!(image.loadFromFile("Generated/Path_00.png")))
-             std::cout << "Cannot load image";   //Load Image
+  sf::Sprite sprite;
+  sprite.setTexture(texture);
 
-     sf::Texture texture;
-     texture.loadFromImage(image);  //Load Texture from image
-
-     sf::Sprite sprite;
-     sprite.setTexture(texture);
-
-    while (running)
-    {
-        sf::Event event;
-
-        window.setVerticalSyncEnabled(true);
-
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                running = false;
-        }
-
-               window.clear();
-               window.draw(sprite);
-               window.display();
-    }
+  window.clear();
+  window.draw(sprite);
+  window.display();
 }

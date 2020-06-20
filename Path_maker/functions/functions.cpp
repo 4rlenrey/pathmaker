@@ -19,7 +19,15 @@ void menu()
     {
         std::cin >> answ;
         if (answ == 'G')
-            graphical();
+          {
+            Graphically window1;
+            window1.set_variables();
+            window1.update("Generated/Path_00.png");
+            console();
+
+
+
+          }
 
         else if (answ == 'C')
             console();

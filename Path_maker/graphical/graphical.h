@@ -1,8 +1,13 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
-#ifndef GG
-#define GG
+class Graphically
+{
+public:
+    sf::Color color;
+    sf::RenderWindow window;
 
-void graphical();
+  void set_variables();
+  void update(std::string n);
 
-#endif
+};
