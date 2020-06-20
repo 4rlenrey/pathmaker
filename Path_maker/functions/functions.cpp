@@ -8,20 +8,29 @@
 
 void GUI()
 {
-  char x;
-   sf::RenderWindow window(sf::VideoMode(800, 600), "Path_Maker");
-   while(x != 'x')
-   {
-   window.display();
-   std::cin >> x;
- }
+
 }
 
 void menu()
 {
     srand(time(NULL));
-    GUI();
-    console();
+    char answ;
+
+    std::cout << "G - GUI / C - Console / ";
+    std::cout << "x - quit" << std::endl;
+
+    while(answ != 'x')
+    {
+    std::cin >> answ;
+    if (answ == 'G')
+     GUI();
+
+    else if(answ == 'C')
+     console();
+
+     std::cout << " " << std::endl;
+   }
+   std::cout << "Quitting... "<< std::endl;
 }
 
 void console()
