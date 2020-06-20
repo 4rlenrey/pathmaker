@@ -4,5 +4,7 @@
 #define FUNCT
 
 void menu();
+void GUI();
+void console();
 
 #endif
