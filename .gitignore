@@ -3,6 +3,8 @@
 
 *.o
 
+#ignore music, fonts etc.
+/Path_maker/graphical/fonts_music
+
+#ignore generated
 /Path_maker/Generated
-#ignore input
-#ignore output
