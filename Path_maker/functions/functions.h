@@ -6,5 +6,6 @@
 void menu();
 void console();
 void ifwindow();
+void test();
 
 #endif

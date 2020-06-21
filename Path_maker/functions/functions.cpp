@@ -6,39 +6,34 @@
 #include "functions.h"
 #include "../path/path.h"
 #include "../graphical/graphical.h"
+#include <thread>
+
+using namespace std;
+
+
+void test()
+{
+  thread windowt(ifwindow);
+  thread tconsole(console);
+
+  windowt.join();
+  tconsole.join();
+
+
+}
 
 void ifwindow()
 {
-    char answ;
-
-    std::cout << "G - graphical / C - Console / ";
-    std::cout << "x - quit" << std::endl;
-
-    while (answ != 'x')
-    {
-        std::cin >> answ;
-        if (answ == 'G')
-          {
             Graphically window1;
             window1.set_variables();
             window1.update("Generated/Path_00.png");
             window1.keepalive();
-            console();
-          }
 
-        else if (answ == 'C')
-
-            return;
-
-        std::cout << " " << std::endl;
-    }
-    std::cout << "Quitting... " << std::endl;
 }
 
 /*
 void menu()
 {
-    srand(time(NULL));
     char answ;
 
     std::cout << "G - graphical / C - Console / ";
@@ -70,6 +65,7 @@ void menu()
 
 void console()
 {
+  srand(time(NULL));
 
     int size_x, size_y;
     char answer;

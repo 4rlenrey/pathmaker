@@ -20,6 +20,7 @@ void Graphically::update(std::string n)
   window.draw(sprite);
   window.display();
 }
+
 void Graphically::keepalive()
 {
   while (window.isOpen())
@@ -30,5 +31,8 @@ void Graphically::keepalive()
           if (event.type == sf::Event::Closed)
               window.close();
       }
+        sf::sleep(sf::milliseconds(2000));
+      Graphically::update("Generated/Path_00.png");
+
   }
 }
