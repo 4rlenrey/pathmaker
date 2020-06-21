@@ -8,6 +8,7 @@ public:
     sf::RenderWindow window;
 
   void set_variables();
+  void keepalive();
   void update(std::string n);
 
 };

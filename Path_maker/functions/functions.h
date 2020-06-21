@@ -5,5 +5,6 @@
 
 void menu();
 void console();
+void ifwindow();
 
 #endif

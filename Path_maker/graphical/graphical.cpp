@@ -5,7 +5,6 @@
 void Graphically::set_variables()
 {
     window.create(sf::VideoMode(800, 600), "My window");
-    window.isOpen();
 }
 
 void Graphically::update(std::string n)
@@ -20,4 +19,16 @@ void Graphically::update(std::string n)
   window.clear();
   window.draw(sprite);
   window.display();
+}
+void Graphically::keepalive()
+{
+  while (window.isOpen())
+  {
+      sf::Event event;
+      while (window.pollEvent(event))
+      {
+          if (event.type == sf::Event::Closed)
+              window.close();
+      }
+  }
 }
