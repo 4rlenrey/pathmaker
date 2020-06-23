@@ -6,6 +6,8 @@ class Graphically
 public:
     sf::Color color;
     sf::RenderWindow window;
+    sf::Image logo;
+
 
   void set_variables();
   void keepalive();

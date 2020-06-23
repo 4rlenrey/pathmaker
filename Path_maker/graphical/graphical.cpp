@@ -10,6 +10,10 @@ void Graphically::set_variables()
 void Graphically::update(std::string n)
 {
   sf::Texture texture;
+  logo.loadFromFile(n);
+  window.setSize(sf::Vector2u(logo.getSize().x,logo.getSize().y));
+
+
    if (!(texture.loadFromFile(n)))
            std::cout << "Cannot load image";
 
