@@ -3,57 +3,120 @@
 #include <cstdlib>
 #include <ctime>
 #include <thread>
+#include <vector>
+#include <fstream>
 #include "functions.h"
 #include "../path/path.h"
 #include "../graphical/graphical.h"
-#include <thread>
+
 
 using namespace std;
 
+void generating_seed()
+{
+    fstream file;
+    file.open("Seeds/seeds.txt", ios::out | ios::trunc);
+
+    int how_many_seeds = 10; //change this to change number of seeds
+
+    int number;
+
+    if (file.is_open())
+    {
+        while (how_many_seeds) // 1 seed per iteration
+        {
+              for (int i = 0; i < 20; i++)
+              {
+                  number = (rand() % 4) + 1;
+                  file << number;
+              }
+              file << "\n"; // end of the seed
+              how_many_seeds--;
+        }
+        file.close();
+    }
+    else
+        cout << "Can't open the file" << endl;
+
+}
+
+void reading_seed()
+{
+    fstream file("Seeds/seeds.txt");
+
+    int how_many_seeds = 0;
+    vector<string> seeds;
+    string line;
+
+    if (file.is_open())
+    {
+        while (!file.eof()) //iterating until the end of the file
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                getline(file, line);
+                seeds.push_back(line); //storing all the seeds in a vector
+                how_many_seeds++;
+                break;
+            }
+        }
+        file.close();
+    }
+    else
+        cout << "Can't open the file" << endl;
+
+        cout << "Seeds generated: " << endl;
+        for(int i = 0; i < 10; i++)
+        {
+          cout <<  seeds[i] << endl;
+        }
+
+}
 
 void test()
 {
+    srand(time(NULL));
 
-  char answ;
+    char answ;
+    generating_seed();
+    reading_seed();
+/*
+    std::cout << "G - graphical / C - Console / ";
+    std::cout << "x - quit" << std::endl;
 
-  std::cout << "G - graphical / C - Console / ";
-  std::cout << "x - quit" << std::endl;
-
-  while (answ != 'x')
-  {
-      std::cin >> answ;
-      if (answ == 'G')
+    while (answ != 'x')
+    {
+        std::cin >> answ;
+        if (answ == 'G')
         {
-          thread windowt(ifwindow);
-          thread tconsole(console);
+            thread windowt(ifwindow);
+            thread tconsole(console);
 
-          windowt.join();
-          tconsole.join();
-
+            windowt.join();
+            tconsole.join();
         }
 
-      else if (answ == 'C')
+        else if (answ == 'C')
 
-          console();
+            console();
 
-      std::cout << " " << std::endl;
-  }
-  std::cout << "Quitting... " << std::endl;
-
+        std::cout << " " << std::endl;
+    }
+*/
+    std::cout << "Quitting... " << std::endl;
 }
 
 void ifwindow()
 {
-            Graphically window1;
-            window1.set_variables();
-            window1.update("Generated/Path_00.png");
-            window1.keepalive();
 
+    Graphically window1;
+    window1.set_variables();
+    window1.update("Generated/Path_00.png");
+    window1.keepalive();
 }
 
 void console()
 {
-  srand(time(NULL));
 
     int size_x, size_y;
     char answer;
