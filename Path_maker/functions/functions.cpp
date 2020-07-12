@@ -12,12 +12,10 @@
 
 using namespace std;
 
-void generating_seed()
+void generating_seed(int how_many_seeds)
 {
     fstream file;
     file.open("Seeds/seeds.txt", ios::out | ios::trunc);
-
-    int how_many_seeds = 10; //change this to change number of seeds
 
     int number;
 
@@ -37,49 +35,73 @@ void generating_seed()
     }
     else
         cout << "Can't open the file" << endl;
-
 }
 
-void reading_seed()
+void Path_Image::seed_to_class()
 {
-    fstream file("Seeds/seeds.txt");
+  fstream file("Seeds/seeds.txt");
+  string line;
+  generating_seed(how_many_images);
 
-    int how_many_seeds = 0;
-    vector<string> seeds;
-    string line;
-
-    if (file.is_open())
+  if (file.is_open())
+  {
+    for (int i = 0; i < how_many_images; i++)
     {
-        while (!file.eof()) //iterating until the end of the file
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                getline(file, line);
-                seeds.push_back(line); //storing all the seeds in a vector
-                how_many_seeds++;
-                break;
-            }
-        }
-        file.close();
+              getline(file, line);
+              seeds.push_back(line); //storing all the seeds in a vector
+              break;
     }
-    else
-        cout << "Can't open the file" << endl;
 
-      //  cout << "Seeds generated: " << endl;
-      //  for(int i = 0; i < 10; i++)
-      //  {
-      //    cout <<  seeds[i] << endl;
-      //  }
+      file.close();
+  }
+  else
+      cout << "Can't open the file" << endl;
+}
+
+void Path_Image::generate_images()
+{
+  size_x = 1024;
+  size_y = 1024;
+
+  sf::Image logo;
+
+  for(int i = 0; i < how_many_images; i++)
+    {
+              logo.create(size_x, size_y, sf::Color::Black);
+              logo.saveToFile(name);
+
+              Path path_1(name, seeds[i]);
+              path_1.seed_to_directions();
+              path_1.drawing_path();
+
+              if (name[16] == '9')
+              {
+                  name[15]++;
+                  name[16] = '0';
+              }
+              else
+                  name[16]++;
+
+    }
+}
+
+void menu()
+{
+  srand(time(NULL));
+
+  cout << "generating program v 0.001" << "\n";
+  Path_Image generation;
+  generation.seed_to_class();
+  generation.generate_images();
 
 }
 
 void test()
 {
-    srand(time(NULL));
-
     char answ;
     //generating_seed();
     //reading_seed();
+    Path_Image immage;
 
     sf::Image logo;
     logo.create(1000, 1000, sf::Color::Black);
@@ -125,7 +147,6 @@ void ifwindow()
 
 void console()
 {
-
     int size_x, size_y;
     char answer;
     std::string name = "Generated/Path_00.png";

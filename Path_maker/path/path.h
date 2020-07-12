@@ -11,7 +11,8 @@ private:
     std::string seed;
     sf::Color color;
 
-    int length;
+    int max_length;
+    int directions_length;
     int pixel_x, pixel_y;
     int size_x, size_y;
     int direction;
