@@ -65,11 +65,11 @@ void reading_seed()
     else
         cout << "Can't open the file" << endl;
 
-        cout << "Seeds generated: " << endl;
-        for(int i = 0; i < 10; i++)
-        {
-          cout <<  seeds[i] << endl;
-        }
+      //  cout << "Seeds generated: " << endl;
+      //  for(int i = 0; i < 10; i++)
+      //  {
+      //    cout <<  seeds[i] << endl;
+      //  }
 
 }
 
@@ -80,6 +80,14 @@ void test()
     char answ;
     generating_seed();
     reading_seed();
+
+    sf::Image logo;
+    logo.create(1000, 1000, sf::Color::Black);
+    logo.saveToFile("Generated/Path_00.png");
+
+    Path path_1("Generated/Path_00.png", "423142314242314231432");
+    path_1.seed_to_directions();
+    path_1.drawing_path();
 /*
     std::cout << "G - graphical / C - Console / ";
     std::cout << "x - quit" << std::endl;
@@ -151,13 +159,14 @@ void console()
         How_many = 1;
 
     sf::Image logo;
+    std::string seed; //!!!!!TO DO
 
     while (How_many)
     {
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
 
-        Path path_1(name);
+        Path path_1(name, "14143223343221213133");
         path_1.drawing_path();
 
 

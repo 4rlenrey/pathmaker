@@ -2,11 +2,13 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <vector>
 #include "path.h"
 
-void Path::set_variables(std::string n)
+void Path::set_variables(std::string n, std::string s)
 {
     name = n;
+    seed = s;
 
     logo.loadFromFile(name);
 
@@ -34,6 +36,27 @@ void Path::set_variables(std::string n)
     color.b = rand() % 255;
 }
 
+void Path::seed_to_directions()
+{
+  directions.clear();
+  int x;
+  for (int i = 0; i < 20; i++)
+  {
+    x = i;
+    directions.push_back(seed[i]);
+    for (int j = 0; j < (int)seed[i]; j++)
+      {
+        if(x+1 > seed.size())
+          x = 1;
+        else if (x+2 > seed.size())
+          x = 0;
+
+        x = x + 2;
+
+       directions.push_back(seed[x]);
+      }
+  }
+}
 
 void Path::drawing_path()
 {
@@ -41,24 +64,24 @@ void Path::drawing_path()
 
     std::cout << "Generating " << name << std::endl;
 
-    for (int i = 0; i < length; i++) // drawing
+    for (int i = 0; i < directions.size(); i++) // drawing
     {
 
-        switch (direction)
+        switch (directions[i])
         {
-            case 1: // up
+            case '1': // up
                 pixel_y += x;
                 break;
 
-            case 2: // down
+            case '2': // down
                 pixel_y -= x;
                 break;
 
-            case 3: // left
+            case '3': // left
                 pixel_x -= x;
                 break;
 
-            case 4: // right
+            case '4': // right
                 pixel_x += x;
                 break;
         }
@@ -66,9 +89,6 @@ void Path::drawing_path()
         for (int i = 0; i < x; i++) // this paint x*x block
             for (int j = 0; j < x; j++)
                 logo.setPixel(pixel_x + i, pixel_y + j, color);
-
-
-        direction = (rand() % 8) + 1;
     }
 
     logo.saveToFile(name);
