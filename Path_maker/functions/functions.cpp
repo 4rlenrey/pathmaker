@@ -78,14 +78,14 @@ void test()
     srand(time(NULL));
 
     char answ;
-    generating_seed();
-    reading_seed();
+    //generating_seed();
+    //reading_seed();
 
     sf::Image logo;
     logo.create(1000, 1000, sf::Color::Black);
     logo.saveToFile("Generated/Path_00.png");
 
-    Path path_1("Generated/Path_00.png", "423142314242314231432");
+    Path path_1("Generated/Path_00.png", "14143223343221213133");
     path_1.seed_to_directions();
     path_1.drawing_path();
 /*

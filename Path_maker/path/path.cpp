@@ -12,7 +12,23 @@ void Path::set_variables(std::string n, std::string s)
 
     logo.loadFromFile(name);
 
-    x = rand() % 10;
+    int y = (int)seed[3];
+    x = ((y*3)%11)+1;
+
+    int r1 = (int)seed[0];
+    int r2 = (int)seed[1];
+    int r3 = (int)seed[2];
+    r1 = ((r1*100) + (r2*10) + (r3));
+
+    int g1 = (int)seed[3];
+    int g2 = (int)seed[4];
+    int g3 = (int)seed[5];
+    g1 = ((g1*100) + (g2*10) + (g3));
+
+    int b1 = (int)seed[6];
+    int b2 = (int)seed[7];
+    int b3 = (int)seed[8];
+    b1 = ((b1*100) + (b2*10) + (b3));
 
     size_x = logo.getSize().x;
     size_y = logo.getSize().y;
@@ -29,11 +45,9 @@ void Path::set_variables(std::string n, std::string s)
     else
         pixel_y = (size_y / 2);
 
-    direction = (rand() % 8) + 1;
-
-    color.r = rand() % 255;
-    color.g = rand() % 255;
-    color.b = rand() % 255;
+    color.r = r1 % 255;
+    color.g = g1 % 255;
+    color.b = b1 % 255;
 }
 
 void Path::seed_to_directions()
@@ -54,6 +68,8 @@ void Path::seed_to_directions()
         x = x + 2;
 
        directions.push_back(seed[x]);
+       if (directions.size() >= 50)
+          return;
       }
   }
 }
@@ -89,6 +105,7 @@ void Path::drawing_path()
         for (int i = 0; i < x; i++) // this paint x*x block
             for (int j = 0; j < x; j++)
                 logo.setPixel(pixel_x + i, pixel_y + j, color);
+
     }
 
     logo.saveToFile(name);
