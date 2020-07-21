@@ -1,6 +1,6 @@
 CC = g++
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
-FLAGS = -Wall
+FLAGS = -g -Wall
 
 OBJ =\
 	main.o\
@@ -15,9 +15,9 @@ clean:
 	@rm -f *.o path/*.o Functions/*.o graphical/*.o
 
 .c.o:
-	$(CC)  -c $(INCLUDES) $(FLAGS) $<
+	$(CC) -g -c $(INCLUDES) $(FLAGS) $<
 
 main: $(OBJ)
-	$(CC)  $(OBJ) $(LIBS) -pthread -std=c++11 -o program
+	$(CC) -g $(OBJ) $(LIBS) -pthread -std=c++11  -o program
 
 #g++ main.cpp path/path.cpp -o program -lsfml-graphics -lsfml-window -lsfml-system

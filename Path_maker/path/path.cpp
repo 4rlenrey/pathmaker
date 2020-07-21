@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include "path.h"
+#include "../functions/functions.h"
+
 
 using namespace std;
 
@@ -54,32 +56,23 @@ void Path::set_variables(std::string n, std::string s)
 
 void Path::seed_to_directions()
 {
-  for (int i = 0; i < seed.size(); i++)
-    cout << seed[i] << " ";
   directions.clear();
   int x;
   int now = 1;
-  for (int i = 0; i < seed.size(); i++)
-  {
-    x = i;
-    directions.push_back(seed[i]);
-    now = (int)seed[i];
-    for (int j = 0; j < now; j++)
-      {
-        if(x + now > seed.size())
-          x = 1;
 
-        x = x + now;
+  std::string this_seed = seed;
 
-       directions.push_back(seed[x]);
-       if (directions.size() > max_length)
-       return;
-       }
-  }
+  int seed_size = (int)this_seed.size();
+  for (int i = 0; i < seed_size; i++)
+    {
+      x = i;
+      directions.push_back(this_seed[x]);
+      now = (int)this_seed[i];
+          directions.push_back(seed[i]);
+          if (directions.size() > max_length)
+           return;
+    }
   directions_length = directions.size();
-  cout << directions_length << endl;
-//for (int i = 0; i < directions_length; i++)
-//  cout << directions[i] << " ";
 }
 
 void Path::drawing_path()
@@ -116,6 +109,5 @@ void Path::drawing_path()
                 }
     }
     logo.saveToFile(name);
-    std::cout << "Generated: " << name << std::endl;
-
+    std::cout << "Generated: " << name << std::endl; //logic error after that????
 }
