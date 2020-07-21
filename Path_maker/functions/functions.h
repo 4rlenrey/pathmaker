@@ -22,8 +22,6 @@ class Path_Image
     void generate_images();
 };
 
-void reading_seed();
 void menu();
-
 
 #endif

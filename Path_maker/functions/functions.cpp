@@ -32,7 +32,7 @@ void Path_Image::generating_seed()
       file.close();
     }
     else
-        cout << "Can't open the file" << endl;
+        cout << "Can't open the file" << "\n";
 }
 
 void Path_Image::seed_to_class()
@@ -45,12 +45,12 @@ void Path_Image::seed_to_class()
         for (int i = 0; i < how_many_images; i++)
         {
             getline(file, line);
-            seeds.push_back(line); // storing all the seeds in a vector
+            seeds.push_back(line); // storing all seeds in a vector
         }
         file.close();
     }
     else
-        cout << "Can't open the file" << endl;
+        cout << "Can't open the file" << "\n";
 }
 
 void Path_Image::generate_images()
@@ -59,21 +59,23 @@ void Path_Image::generate_images()
     size_x = 1024;
     size_y = 1024;
 
-    generating_seed();
-    seed_to_class();
+    cout << "Generating " << how_many_images << " images" << "\n";
 
-    for (int i = 0; i < how_many_images; i++)
+    generating_seed(); //generate random seeds to .txt file
+    seed_to_class(); //add these seeds to a seeds array
+
+    for (int i = 0; i < how_many_images; i++) //one image generated per iteration
     {
 
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
+        cout << "=============================================" << "\n";
+        cout << "NAME: " << name << "\n";
+        cout << "SEED: " << seeds[i] << "\n";
 
-        cout << "NAME: " << name << endl;
-        cout << "SEED: " << seeds[i] << endl;
-
-        Path path_1(name, seeds[i]); //name and seed for iteration
+        Path path_1(name, seeds[i]);
         path_1.seed_to_directions();
-        path_1.drawing_path(); //here logic error
+        path_1.drawing_path();
 
         if (name[16] == '9')
         {
@@ -83,6 +85,7 @@ void Path_Image::generate_images()
         else
             name[16]++;
 
+        cout << "=============================================" << "\n";
     }
 }
 
@@ -93,4 +96,5 @@ void menu()
     cout << "generating program v 0.001" << "\n";
     Path_Image generation;
     generation.generate_images();
+    cout << "Quitting" << "\n";
 }

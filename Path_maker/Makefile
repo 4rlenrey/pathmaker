@@ -12,12 +12,10 @@ all: main
 
 clean:
 	@echo Deleting files
-	@rm -f *.o path/*.o Functions/*.o graphical/*.o
+	@rm -f *.o path/*.o Functions/*.o graphical/*.o Generated/*.png
 
 .c.o:
 	$(CC) -g -c $(INCLUDES) $(FLAGS) $<
 
 main: $(OBJ)
 	$(CC) -g $(OBJ) $(LIBS) -pthread -std=c++11  -o program
-
-#g++ main.cpp path/path.cpp -o program -lsfml-graphics -lsfml-window -lsfml-system
