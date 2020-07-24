@@ -2,20 +2,52 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <vector>
 #include "path.h"
+#include "../functions/functions.h"
 
-void Path::set_variables(std::string n)
+
+using namespace std;
+
+void Path::set_variables(std::string n, std::string s)
 {
     name = n;
+    seed = s;
 
     logo.loadFromFile(name);
 
-    x = rand() % 10;
+    int y = (int)seed[3];
+    x = ((y*3)%11)+1;
+
+    //interpreting color from seed
+
+    int r1 = (int)seed[0]; //red
+    int r2 = (int)seed[1];
+    int r3 = (int)seed[2];
+    r1 = ((r1*100) + (r2*10) + (r3));
+
+    int g1 = (int)seed[3]; //green
+    int g2 = (int)seed[4];
+    int g3 = (int)seed[5];
+    g1 = ((g1*100) + (g2*10) + (g3));
+
+    int b1 = (int)seed[6]; //blue
+    int b2 = (int)seed[7];
+    int b3 = (int)seed[8];
+    b1 = ((b1*100) + (b2*10) + (b3));
+
+    color.r = r1 % 255;
+    color.g = g1 % 255;
+    color.b = b1 % 255;
+
+    //getting size from image
 
     size_x = logo.getSize().x;
     size_y = logo.getSize().y;
 
-    length = rand() % (size_x * 5);
+    max_length = size_x * 3;
+
+    //center starting pixel
 
     if (size_x % 2 > 0)
         pixel_x = ((size_x - 1) / 2);
@@ -27,49 +59,58 @@ void Path::set_variables(std::string n)
     else
         pixel_y = (size_y / 2);
 
-    direction = (rand() % 8) + 1;
-
-    color.r = rand() % 255;
-    color.g = rand() % 255;
-    color.b = rand() % 255;
 }
 
+void Path::seed_to_directions() // converts seed to a list of directions
+{
+  directions.clear();
+  int x;
+  int now = 1;
+
+  std::string this_seed = seed;
+
+  int seed_size = (int)this_seed.size();
+  for (int i = 0; i < seed_size; i++)
+    {
+      x = i;
+      directions.push_back(this_seed[x]);
+      now = (int)this_seed[i];
+      directions.push_back(seed[i]);
+      if (directions.size() > max_length)
+        return;
+    }
+  directions_length = directions.size();
+}
 
 void Path::drawing_path()
 {
     logo.loadFromFile(name);
 
-    std::cout << "Generating " << name << std::endl;
-
-    for (int i = 0; i < length; i++) // drawing
+    for (int i = 0; i < directions_length; i++) // drawing
     {
-
-        switch (direction)
+        switch (directions[i])
         {
-            case 1: // up
+            case '1': // up
                 pixel_y += x;
                 break;
 
-            case 2: // down
+            case '2': // down
                 pixel_y -= x;
                 break;
 
-            case 3: // left
+            case '3': // left
                 pixel_x -= x;
                 break;
 
-            case 4: // right
+            case '4': // right
                 pixel_x += x;
                 break;
         }
 
         for (int i = 0; i < x; i++) // this paint x*x block
             for (int j = 0; j < x; j++)
-                logo.setPixel(pixel_x + i, pixel_y + j, color);
+                  logo.setPixel(pixel_x + i, pixel_y + j, color);
 
-
-        direction = (rand() % 8) + 1;
     }
-
     logo.saveToFile(name);
 }

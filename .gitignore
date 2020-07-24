@@ -5,3 +5,7 @@
 
 #ignore generated
 /Path_maker/Generated
+#ignore seeds
+/Path_maker/Seeds/*.txt
+#ideas
+todo.txt

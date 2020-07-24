@@ -1,6 +1,6 @@
 CC = g++
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system
-FLAGS = -Wall
+FLAGS = -g -Wall
 
 OBJ =\
 	main.o\
@@ -12,12 +12,10 @@ all: main
 
 clean:
 	@echo Deleting files
-	@rm -f *.o path/*.o Functions/*.o graphical/*.o
+	@rm -f *.o path/*.o Functions/*.o graphical/*.o Generated/*.png
 
 .c.o:
-	$(CC)  -c $(INCLUDES) $(FLAGS) $<
+	$(CC) -g -c $(INCLUDES) $(FLAGS) $<
 
 main: $(OBJ)
-	$(CC)  $(OBJ) $(LIBS) -pthread -std=c++11 -o program
-
-#g++ main.cpp path/path.cpp -o program -lsfml-graphics -lsfml-window -lsfml-system
+	$(CC) -g $(OBJ) $(LIBS) -pthread -std=c++11  -o program

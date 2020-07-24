@@ -3,100 +3,79 @@
 #include <cstdlib>
 #include <ctime>
 #include <thread>
+#include <vector>
+#include <fstream>
 #include "functions.h"
 #include "../path/path.h"
 #include "../graphical/graphical.h"
-#include <thread>
 
 using namespace std;
 
-
-void test()
+void Path_Image::generating_seed()
 {
+    ofstream file;
+    file.open("Seeds/seeds.txt", ios::out | ios::trunc);
 
-  char answ;
+    int number;
 
-  std::cout << "G - graphical / C - Console / ";
-  std::cout << "x - quit" << std::endl;
-
-  while (answ != 'x')
-  {
-      std::cin >> answ;
-      if (answ == 'G')
+    if (file.is_open())
+    {
+      for (int j = 0; j < how_many_images; j++)
+      {
+       for (int i = 0; i < 20; i++)
         {
-          thread windowt(ifwindow);
-          thread tconsole(console);
-
-          windowt.join();
-          tconsole.join();
-
+            number = (rand() % 4) + 1;
+            file << number;
         }
-
-      else if (answ == 'C')
-
-          console();
-
-      std::cout << " " << std::endl;
-  }
-  std::cout << "Quitting... " << std::endl;
-
-}
-
-void ifwindow()
-{
-            Graphically window1;
-            window1.set_variables();
-            window1.update("Generated/Path_00.png");
-            window1.keepalive();
-
-}
-
-void console()
-{
-  srand(time(NULL));
-
-    int size_x, size_y;
-    char answer;
-    std::string name = "Generated/Path_00.png";
-
-    std::cout << "Do you want to specify size of your image? (Y/N)" << std::endl;
-    std::cin >> answer;
-
-    if (answer == 'Y')
-    {
-        std::cout << "What width should your image be?" << std::endl;
-        std::cin >> size_x;
-        std::cout << "What height should your image be?" << std::endl;
-        std::cin >> size_y;
+        file << "\n"; // end of the seed
+      }
+      file.close();
     }
     else
-    {
-        size_x = 1024;
-        size_y = 1024;
-    }
-    std::cout << "Do you want to generate more images? (Y/N)" << std::endl;
-    std::cin >> answer;
+        cout << "Can't open the file" << "\n";
+}
 
-    int How_many;
+void Path_Image::seed_to_class()
+{
+    ifstream file("Seeds/seeds.txt");
+    string line;
 
-    if (answer == 'Y')
+    if (file.is_open())
     {
-        std::cout << "How many? ";
-        std::cin >> How_many;
+        for (int i = 0; i < how_many_images; i++)
+        {
+            getline(file, line);
+            seeds.push_back(line); // storing all seeds in a vector
+        }
+        file.close();
     }
     else
-        How_many = 1;
+        cout << "Can't open the file" << "\n";
+}
 
-    sf::Image logo;
+void Path_Image::generate_images()
+{
+    name = "Generated/Path_00.png";
+    size_x = 1024;
+    size_y = 1024;
 
-    while (How_many)
+    cout << "Generating " << how_many_images << " images" << "\n";
+
+    generating_seed(); //generate random seeds to .txt file
+    seed_to_class(); //add these seeds to a seeds array
+
+    for (int i = 0; i < how_many_images; i++) //one image generated per iteration
     {
+
         logo.create(size_x, size_y, sf::Color::Black);
         logo.saveToFile(name);
+        cout << "=============================================" << "\n";
+        cout << "NAME: " << name << "\n";
+        cout << "SEED: " << seeds[i] << "\n";
 
-        Path path_1(name);
+        Path path_1(name, seeds[i]);
+        path_1.seed_to_directions();
         path_1.drawing_path();
-
 
         if (name[16] == '9')
         {
@@ -106,6 +85,16 @@ void console()
         else
             name[16]++;
 
-        How_many--;
+        cout << "=============================================" << "\n";
     }
+}
+
+void menu()
+{
+    srand(time(NULL));
+
+    cout << "generating program v 0.001" << "\n";
+    Path_Image generation;
+    generation.generate_images();
+    cout << "Quitting" << "\n";
 }
