@@ -64,7 +64,8 @@ void Path_Image::generate_images()
     generating_seed(); //generate random seeds to .txt file
     seed_to_class(); //add these seeds to a seeds array
 
-    for (int i = 0; i < how_many_images; i++) //one image generated per iteration
+    //one image generated per iteration
+    for (int i = 0; i < how_many_images; i++)
     {
 
         logo.create(size_x, size_y, sf::Color::Black);

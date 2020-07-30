@@ -15,7 +15,7 @@ void Graphically::update(std::string n)
 
 
    if (!(texture.loadFromFile(n)))
-           std::cout << "Cannot load image";
+     std::cout << "Cannot load image";
 
   sf::Sprite sprite;
   sprite.setTexture(texture);
@@ -29,14 +29,14 @@ void Graphically::keepalive()
 {
   while (window.isOpen())
   {
-      sf::Event event;
-      while (window.pollEvent(event))
-      {
-          if (event.type == sf::Event::Closed)
-              window.close();
-      }
-        sf::sleep(sf::milliseconds(2000));
-      Graphically::update("Generated/Path_00.png");
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+      if (event.type == sf::Event::Closed)
+        window.close();
+    }
+    sf::sleep(sf::milliseconds(2000));
+    Graphically::update("Generated/Path_00.png");
 
   }
 }
