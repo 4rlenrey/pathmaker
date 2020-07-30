@@ -1,8 +1,8 @@
-#Learning SFML
+# Learning SFML
 >This is my repo that contains some simple programs.
 >I used SFML to create them.
 
-#Available programs:
+## Available programs:
 - [Path_Maker] (#Path_Maker)
 
 
