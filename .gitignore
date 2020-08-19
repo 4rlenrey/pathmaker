@@ -1,11 +1,15 @@
 /Path_maker/program
+/4rlenrage/run
 #run
 
 *.o
 
 #ignore generated
 /Path_maker/Generated
+/4rlenrage/Generated
+
 #ignore seeds
 /Path_maker/Seeds/*.txt
+
 #ideas
 todo.txt
